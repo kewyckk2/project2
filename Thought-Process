@@ -1,0 +1,19 @@
+Wanting to challenge myself, I decided to try CentOS rather than Rocky or Fedora. 
+
+Though this provided it's own challenges. I initially selected CentOS 7 and began working my way through, learning that apt doesn't work and it instead used yum, and the fact that it didn't come with nano
+made it a bit harder than I thought -- that being said, I have gotten pretty proficient with using VIM through my trials and errors.
+
+But it wasn't that way at first! I installed both nano and wget so I would have some familiar commands, though in trying to make it more like Ubuntu, I wwas neglecting any benefit that this distro could have in a way.
+
+After updating my system, I began to work through the same steps as I had with the Ubuntu distro, but was constantly facing issues using Apache (httpd in CentOS)! I'd get Apache, PHP, and MariaDB all set up and seemingly
+working but then out of nowhere the command systemctl status httpd would always return with not running and a littany of errors. Uninstalling it, reinstalling it, disabling it, trying everything I can —and it just  
+wasn't wanting to cooperate.
+
+I completely deleted the VM multiple times, once even going to CentOS 8, hoping for a slightly easier time before hopping on a discord for the CentOS 7 and learning about nginx and it seemed to be the 
+solutuion I was looking for.
+
+
+...and while I presume this is going to cause it's own issues coming up for part 3 (I have no problem going through and forcing Apache/httpd instead of my solution) this seemed a more streamlined method.
+
+The slight differences in the commands constantly threw me, with even how to access MariaDB/MySQL being close but just different enough.
+In the end, I got the site up and running, customized it to my liking, and am eager to make the two that I've made so far connect.
