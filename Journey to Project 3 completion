@@ -1,0 +1,75 @@
+Beginning work in windows Terminal for the beginning of building a Load Balancer
+
+"gcloud auth list" command showed my correct google account, though I had to config it a bit further and set the account as the updated property for core/account
+
+Attempting to use the "export PROJECT_ID=$(gcloud config get-value project)" command returned errors that ther term export is not recognized as a function/script/etc.
+
+Some cursory searching turned up that windows can also use the command "set" fairly interchangably in powershell for the purposes of this command... attempting alternate command
+
+No errors in response to using the set command but I think I may be approaching this incorrectly -- restarting with Google Cloud SDK Shell rather than Powershell
+
+Back in Google SDK, and it seems to be working a bit better, though I am already facing some issues as while the set command does register as a replacement for "export", it isn't assigning my current zone nor is it showing what my zone is. google config list zone returns that the section [core] has no property [zone] -- though with a simpler command of "gcloud config list" it does return that my zone is us-east4-b
+
+More testing required. 
+
+Ah, similarly to how I needed to set the account after having it list with gcloud auth list, I needed to set the zone for the property? 
+
+Well nevermind, that didn't seem to update the property either... 
+
+Ah -- appears that for some reason my Gcloud SDK didnt have auth login, here's hoping it fixes some of the issues.
+
+Finally! Loaded the webpage to reauth my google account.
+
+Nope. No change. Still not listing zones. I am not entirely sure what I am doing wrong, and this is becoming frustrating.
+
+Let's try this again but this time in Command Prompt? Instead of powershell OR Gcloud SDK?
+
+Trying very basic inputs now to try and see what is going wrong. Starting with gcloud init and seeing if maybe making a new project with the variable PROJECT_ID as per instructions helps or harms my endeavors.
+
+No. Switching back to original project id.
+
+Some more searching turned up "$env:" as a replacement for both set and export... testing.
+
+No. Nothing seems to be working. I've hit a brick wall and I've hardly begun.
+
+Switching back to powershell? Am grasping at straws at this point.
+
+Went back and rewatched video, saw that you recieved the same error as I did when checking for zone... trying your same solution.
+
+Wow, I was too eager to begin and didn't throroughly watch the video. Now learning that I dont need to define the variables, and can just use the data I can readily find.
+
+Well, that didn not work. The gcloud compute instances create debian23 --machine-type e2-medium --zone="us-west4-b' command returns >> as if it's awaiting further input and I cant seem to get the command to actually run.
+
+Decided I am just going to brute force it using the gcloud dashboard. This is causing more stress than needed.
+
+Proved good practice to be able to understand the inner workings of the commands, and how to best adapt them to windows -- appears when in powershell the command $env: nor the command set (not to mention export) work for my OS.
+
+Perhaps while going through the google lab for the Load Balancer will prove to be more accurate for my system.
+
+I have moved into the google lab and I am already facing problems. The first two commands work just fine but past that, they don't seem to be working... the writeup says that I need to be in the cloud shell and the commands simply aren't working besides the initial gcloud compute create instance, which does seem to create the VMs on my GCloud, but the rest of the commands simply do not work.
+
+I have switched to using the in-browser google shell and am seeing progress (finally!)
+
+Finally! Progress!
+
+All the commands (finally) seem to be working. 
+
+Have successfully added all instances using the command prompt rather than the dashboard, and have begun configuring the load balancing server.
+
+Load balancer template successfully created in Google Shell, no change needed in commands.
+
+Reserved static IP 34.144.247.166
+
+Successfully created backend service with gcloud compute backend-services
+
+Added instance groups using given commands (so happy to see them working with little to no change on my end other than adjusting zone or region!)
+
+Frontend fowarding rule and corresponding IP address created.
+
+For some reason, the backend had not been set to port 80 to allow access. Changed the setting on the load balancer web-map-http, and success!
+
+http://34.144.247.166/ prints a white webpage with the text "Page served from: lb-backend-group-7cjx"
+
+While the Load balancer dashboard on GoogleCloud doesnt show that it has been assigned the region I chose (us-west4), looking at the details of the backend show that it was successfully assigned.
+
+I'd call this project (and semester) done and dusted!
